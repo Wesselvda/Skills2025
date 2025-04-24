@@ -1,0 +1,138 @@
+body {
+    font-family: sans-serif;
+}
+
+#game-container {
+    --size: 6;
+    border: 20px #000 solid;
+    position: relative;
+
+    width: calc(var(--size) * 100px);
+    height: calc(var(--size) * 100px);
+
+    .square {
+        --x: 0;
+        --y: 0;
+        --color: "#ff0000";
+
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-color: var(--color);
+
+        left: calc(var(--x) * 100px);
+        top: calc(var(--y) * 100px);
+        cursor: pointer;
+
+        animation: loadSquares .3s ease;
+    }
+
+    p.overlay-text {
+        margin: 0;
+        position: absolute;
+        text-align: center;
+        vertical-align: middle;
+        left: 50%;
+        top: 50%;
+        width: calc(var(--size) * 100px);
+        font-size: 4rem;
+        transform: translate(-50%, -50%);
+        text-shadow: 1px 1px 2px #fff;
+        animation: popText .4s ease-in-out;
+    };
+}
+
+#scoreboard {
+    margin-left: 4rem;
+
+    &:has(li)::before {
+        content: 'Scores';
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    li {
+        font-size: 2rem;
+        animation: scoreAdded .4s ease-in-out;
+    }
+}
+
+@keyframes loadSquares {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes popText {
+    0% {
+        font-size: 4rem;
+    }
+
+    50% {
+        font-size: 5rem;
+    }
+
+    100% {
+        font-size: 4rem;
+    }
+}
+
+@keyframes scoreAdded {
+    0% {
+        font-size: 0rem;
+    }
+
+    100% {
+        font-size: 2rem;
+    }
+}
+
+
+
+
+.menubar {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input, button, select, option {
+        font-size: 1.5rem;
+        border: 0;
+        padding: .5rem;
+        margin: 0 .5rem;
+    }
+
+    input {
+        border: #000 1px solid;
+    }
+}
+
+.score-menu {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    p {
+        width: 50vw;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 1rem;
+    }
+
+    p:first-child {
+        text-align: end;
+    }
+}
+
+
+.content-container {
+    display: flex;
+    justify-content: center;
+}
