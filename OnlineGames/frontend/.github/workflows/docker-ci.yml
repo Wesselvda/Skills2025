@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      # run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/skill17-laravel-base
+      run: docker build . --file Dockerfile --tag git.taitaja.webkehitys.fi/${{ github.repository }}
+    - name: docker login
+      env:
+        USER: ${{ secrets.USER }}
+        PASS: ${{ secrets.PASS }}
+      run: docker login -u $USER -p $PASS git.taitaja.webkehitys.fi
+    - name: push to docker hub
+      run: docker push git.taitaja.webkehitys.fi/${{ github.repository }}

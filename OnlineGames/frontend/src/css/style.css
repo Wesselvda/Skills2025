@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+@keyframes retroGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 200%;
+  }
+}
+html, body {
+  margin: 0;
+  background-color: #6821cc;
+  background: linear-gradient(#6821cc, #ff0049, #00a1f7, #6821cc);
+  background-size: 200% 200%;
+  animation: retroGradient 30s linear infinite;
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  min-height: 100vh;
+}
+
+button {
+  transition: all 0.2s;
+  border: none;
+  color: #fff;
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+button:hover {
+  color: #cccccc;
+}
+
+input {
+  display: block;
+  border: 3px solid #6821cc;
+  border-radius: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem;
+}
+
+button[type=submit] {
+  transition: all 0.2s;
+  background-color: #00a1f7;
+  color: #fff;
+  border: 3px solid #6821cc;
+  border-radius: 0;
+  padding: 0.25rem;
+}
+button[type=submit]:hover {
+  background-color: #005f91;
+  color: #cccccc;
+}
+
+.main-nav {
+  display: flex;
+  padding: 0.5rem;
+  padding-left: max(15vw, 4.5rem);
+  padding-right: max(15vw, 4.5rem);
+  width: 100%;
+  align-items: center;
+  justify-content: end;
+}
+.main-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+.main-nav a, .main-nav button {
+  transition: all 0.2s;
+}
+.main-nav a:hover, .main-nav button:hover {
+  color: #cccccc;
+}
+.main-nav a:not(:last-child), .main-nav button:not(:last-child) {
+  margin-right: 1rem;
+}
+
+main {
+  padding: 1.5rem;
+  padding-left: max(15vw, 4.5rem);
+  padding-right: max(15vw, 4.5rem);
+}
+main h1 {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.homepage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.homepage-grid > a {
+  background-color: #00a1f7;
+  padding: 1.5rem;
+  box-shadow: 5px 5px 5px rgba(0, 161, 247, 0.5);
+  aspect-ratio: 1/1;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.homepage-grid > a > img {
+  transition: all 0.2s;
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.homepage-grid > a:hover {
+  filter: brightness(0.8);
+}
+.homepage-grid > a:hover > img {
+  transform: scale(1.1);
+}
+
+.game-info {
+  text-align: center;
+}
+.game-info .game-image {
+  max-width: 40vmin;
+}/*# sourceMappingURL=style.css.map */
