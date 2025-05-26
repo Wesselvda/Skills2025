@@ -39,6 +39,13 @@ class UserController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user->active) {
+            Auth::logout();
+            return response()->json(['message' => 'User inactive.'], 401);
+        }
+
         $token = $request->user()->createToken('API Token')->plainTextToken;
         return response()->json(['token' => $token]);
     }

@@ -102,7 +102,7 @@ const GameInfo = () => {
   return (
     <div className="game-info">
       <h1>{game.title}</h1>
-      <img src={`/assets/images/${game.image_path}`} alt={game.title} className="game-image" />
+      <img src={`http://localhost:5000/storage/game-images/${game.image_path}`} alt={game.title} className="game-image" />
       <p>{game.description}</p>
       <p><strong>Credits required:</strong> {game.credit_cost}</p>
       {isLoggedIn && <p><strong>Your credits:</strong> {user.credits}</p>}

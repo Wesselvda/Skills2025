@@ -127,4 +127,12 @@ main h1 {
 }
 .game-info .game-image {
   max-width: 40vmin;
+}
+
+th {
+  text-align: start;
+}
+
+th, tr {
+  font-size: 1rem;
 }/*# sourceMappingURL=style.css.map */

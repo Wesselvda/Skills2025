@@ -1,0 +1,49 @@
+.particle-btn::before,
+.particle-btn::after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%),
+                      radial-gradient(circle, #ff598c 20%, transparent 20%);
+    background-size: 10px 10px;
+    background-position:
+        5% 0%,
+        33% 5%,
+        66% 10%,
+        100% 0%,
+        10% 100%,
+        33% 100%,
+        72% 90%,
+        100% 95%;
+    opacity: 0;
+    transition: none;
+    transform: scale(1.8);
+}
+
+.particle-btn:active::before {
+    animation: explode 0.5s forwards;
+}
+
+@keyframes explode {
+    0% {
+        opacity: 1;
+        transform: scale(1.8);
+        background-size: 60px 60px;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.9);
+        background-size: 5px 5px;
+    }
+}

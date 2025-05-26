@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import GameInfo from './Pages/GameInfo';
 import { AppProvider } from './contexts/AppContext';
 import Register from './Pages/Register';
+import Admin from './Pages/Admin';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='login' element={<Login />} />
             <Route path='register' element={<Register />} />
+            <Route path='admin' element={<Admin />} />
             <Route path='game/:gameId' element={<GameInfo />} />
           </Route>
         </Routes>

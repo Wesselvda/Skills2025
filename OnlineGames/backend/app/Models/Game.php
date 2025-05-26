@@ -14,6 +14,8 @@ class Game extends Model
         'subtitle',
         'image_path',
         'credit_cost',
+        'order',
+        'active'
     ];
 
     public function gameSessions()

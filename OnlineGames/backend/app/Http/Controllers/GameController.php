@@ -10,12 +10,12 @@ class GameController extends Controller
 {
     public function index()
     {
-        return Game::all();
+        return Game::orderBy('order')->where('active', true)->get();
     }
 
     public function show($id)
     {
-        $game = Game::findOrFail($id);
+        $game = Game::where('active', true)->findOrFail($id);
         return response()->json($game);
     }
 }

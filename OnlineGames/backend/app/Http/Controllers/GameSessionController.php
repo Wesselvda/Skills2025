@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\CreditTransaction;
 use App\Models\Game;
 use App\Models\User;
 use App\Models\GameSession;
@@ -26,6 +27,13 @@ class GameSessionController extends Controller
 
         $user->credits -= $game->credit_cost;
         $user->save();
+
+        CreditTransaction::create([
+            'user_id' => $user->id,
+            'amount' => $game->credit_cost,
+            'type' => "gamestart",
+            'description' => $game->title
+        ]);
 
         $session = GameSession::create([
             'user_id' => $user->id,

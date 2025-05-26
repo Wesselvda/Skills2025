@@ -1,0 +1,27 @@
+.wrapper {
+
+}
+
+.todo-item {
+
+}
+
+.todo-label {
+    position: relative;
+}
+
+.todo-label::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    height: 1px;
+    width: 0px;
+    background-color: black;
+    transition: width .2s;
+}
+
+:checked + .todo-label::before {
+    width: 100%;
+}

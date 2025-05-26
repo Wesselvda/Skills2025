@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('subtitle');
             $table->string('image_path');
             $table->integer('credit_cost');
+            $table->boolean('active')->default(true);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

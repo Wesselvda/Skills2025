@@ -22,7 +22,7 @@ const Home = () => {
         {games.map((game) => (
           <Link key={game.id} to={`/game/${game.id}`}>
             <img
-              src={"/assets/images/" + game.image_path}
+              src={"http://localhost:5000/storage/game-images/" + game.image_path}
               alt={game.title ?? "Game"}
             />
           </Link>
