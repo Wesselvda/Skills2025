@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: orange;
+    height: 100vh;
+    margin: 0;
+}
+
+.flag {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    height: 300px;
+    background-color: #fff;
+
+    .circle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(30deg);
+        height: 150px;
+        width: 150px;
+        background-color: #e7042e;
+        border-radius: 50%;
+
+        .second-half {
+            position: relative;
+            background-color: #00307b;
+            border-bottom-left-radius: 75px;
+            border-bottom-right-radius: 75px;
+            height: 75px;
+            margin-top: 75px;
+            width: 150px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                display: block;
+                background-color: #e7042e;
+                width: 75px;
+                height: 37.5px;
+                top: -1%;
+                left: 0;
+                border-bottom-left-radius: 75px;
+                border-bottom-right-radius: 75px;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                background-color: #00307b;
+                width: 75px;
+                height: 37.5px;
+                bottom: 99%;
+                right: 0;
+                border-top-left-radius: 75px;
+                border-top-right-radius: 75px;
+            }
+        }
+    }
+
+    .bars-wrapper {
+        position: relative;
+        left: 15%;
+        top: 18%;
+        width: 70%;
+        height: 64%;
+
+        .bars {
+            position: absolute;
+            width: 70px;
+            display: grid;
+            gap: 5px;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+
+            .bar {
+                height: 10px;
+                background-color: #000;
+            }
+        }
+
+        .bars.topleft {
+            left: 0;
+            top: 0;
+            transform: rotate(-56deg);
+
+            .bar {
+                grid-column: span 2;
+            }
+        }
+
+        .bars.topright {
+            right: 0;
+            top: 0;
+            transform: rotate(56deg);
+
+            :nth-child(3) {
+                grid-column: span 2;
+            }
+        }
+
+        .bars.bottomleft {
+            left: 0;
+            bottom: 0;
+            transform: rotate(56deg);
+
+            :nth-child(1) {
+                grid-column: span 2;
+            }
+            :nth-child(4) {
+                grid-column: span 2;
+            }
+        }
+
+        .bars.bottomright {
+            right: 0;
+            bottom: 0;
+            transform: rotate(-56deg);
+        }
+    }
+}
