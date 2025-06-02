@@ -1,0 +1,81 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+}
+
+.stars {
+    position: relative;
+    display: flex;
+    background-image: url(stars.png);
+    aspect-ratio: 5 / 1;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80vmin;
+    cursor: pointer;
+}
+
+.stars::after {
+    content: '';
+    transition: width .5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle, #e5ba41 24%, transparent 24%),
+        radial-gradient(circle, #e5ba41 12%, transparent 12%),
+        radial-gradient(circle, #e5ba41 12%, transparent 12%),
+        radial-gradient(circle, #e5ba41 12%, transparent 12%),
+        radial-gradient(circle, #e5ba41 12%, transparent 12%),
+        radial-gradient(circle, #e5ba41 12%, transparent 12%);
+    background-size: 16vmin;
+    background-position:
+        0 .5vmin,
+        1.9vmin 3.3vmin,
+        -1.9vmin 3.3vmin,
+        0 -2.4vmin,
+        3vmin -.2vmin,
+        -3vmin -.2vmin;
+    z-index: -1;
+}
+
+.stars .star-hoverpoint {
+    margin: 0;
+    width: 8vmin;
+    height: 100%;
+}
+
+.stars:has(.star-hoverpoint:nth-child(1):hover)::after {
+    width: 10%;
+}
+.stars:has(.star-hoverpoint:nth-child(2):hover)::after {
+    width: 20%;
+}
+.stars:has(.star-hoverpoint:nth-child(3):hover)::after {
+    width: 30%;
+}
+.stars:has(.star-hoverpoint:nth-child(4):hover)::after {
+    width: 40%;
+}
+.stars:has(.star-hoverpoint:nth-child(5):hover)::after {
+    width: 50%;
+}
+.stars:has(.star-hoverpoint:nth-child(6):hover)::after {
+    width: 60%;
+}
+.stars:has(.star-hoverpoint:nth-child(7):hover)::after {
+    width: 70%;
+}
+.stars:has(.star-hoverpoint:nth-child(8):hover)::after {
+    width: 80%;
+}
+.stars:has(.star-hoverpoint:nth-child(9):hover)::after {
+    width: 90%;
+}
+.stars:has(.star-hoverpoint:nth-child(10):hover)::after {
+    width: 100%;
+}

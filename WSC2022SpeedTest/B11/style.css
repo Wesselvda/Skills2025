@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    --sunset-speed: 1s;
+    transition: background-color var(--sunset-speed);
+    background-color: #080717;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.backgroundimage {
+    transition: all var(--sunset-speed);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    filter: hue-rotate(20deg) brightness(.6) contrast(1.5) sepia(0);
+}
+
+.sunandmoon {
+    transition: all var(--sunset-speed);
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 200vh;
+    width: 100%;
+    z-index: -1;
+    animation: rotateSunToMoon 1s forwards;
+}
+
+.sun {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: brightness(100);
+}
+
+.moon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.clouds {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.cloud {
+    position: absolute;
+    width: var(--cloud-width);
+    opacity: .8;
+}
+
+.cloud:first-child {
+    animation: movecloud 200s linear infinite;
+    top: 2vh;
+    --cloud-width: 150px;
+    animation-delay: -40s;
+}
+
+.cloud:last-child {
+    animation: movecloud 140s linear infinite;
+    top: 10vh;
+    --cloud-width: 250px;
+    animation-delay: -50s;
+}
+
+.buttons {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+body.day {
+    background-color: #ffda7f;
+
+    .backgroundimage {
+        filter: hue-rotate(0) brightness(1) contrast(1.8) sepia(1);
+    }
+
+    .sunandmoon {
+        animation: rotateMoonToSun 1s forwards;
+    }
+}
+
+@keyframes rotateMoonToSun {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotateSunToMoon {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes movecloud {
+    from {
+        left: 100vw;
+    }
+    to {
+        left: calc(var(--cloud-width) * -1);
+    }
+}

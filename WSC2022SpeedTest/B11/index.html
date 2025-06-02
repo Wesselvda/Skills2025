@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("dayButton").addEventListener("click", () => {
+                document.body.classList.contains("day") || document.body.classList.add("day");
+            })
+
+            document.getElementById("nightButton").addEventListener("click", () => {
+                document.body.classList.contains("day") && document.body.classList.remove("day");
+            })
+        })
+    </script>
+</head>
+<body class="day">
+    <img src="images/1.png" alt="Background" class="backgroundimage">
+    <div class="clouds">
+        <img src="images/4.png" alt="Cloud" class="cloud">
+        <img src="images/4.png" alt="Cloud" class="cloud">
+    </div>
+    <div class="sunandmoon">
+        <img class="sun" src="images/2.png" alt="Sun">
+        <img class="moon" src="images/3.png" alt="Moon">
+    </div>
+    <div class="buttons">
+        <button id="dayButton">Day</button>
+        <button id="nightButton">Night</button>
+    </div>
+</body>
+</html>

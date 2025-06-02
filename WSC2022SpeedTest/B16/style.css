@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #2d2c2d;
+    color: #fff;
+    font-family: sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.marquee {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.wrapper {
+    --text-width: 1000px;
+    animation: marquee 5s infinite linear;
+    text-wrap: nowrap;
+}
+
+.wrapper div {
+    display: inline-block;
+    width: var(--text-width);
+    font-size: 130px;
+    text-transform: uppercase;
+}
+
+@keyframes marquee {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: calc(var(--text-width) * -1);
+    }
+}
