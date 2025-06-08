@@ -1,4 +1,4 @@
-let currentEasingFunction = null;
+let selectedEasingFunctions = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch('data/easing-functions-subset-3.json').then(res => {
@@ -12,60 +12,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function parseData(data) {
     const easingFunctions = Object.values(data.easingFunctions);
-
     const optionsElement = document.getElementById("options");
 
-    for (let i = 0; i < easingFunctions.length; i++) {
-        const easingFunction = easingFunctions[i];
-
+    for (let easingFunction of easingFunctions) {
         const wrapper = document.createElement("div");
         wrapper.className = "option-wrapper";
-        const radio = document.createElement("input");
-        radio.type = "radio";
-        radio.id = easingFunction.text + "-input";
-        radio.name = "easingoption";
-        radio.addEventListener("change", (e) => { selectEasingFunction(e, easingFunction) })
-        wrapper.appendChild(radio);
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `${easingFunction.text}-input`;
+        checkbox.addEventListener("change", (e) => toggleEasingFunction(e, easingFunction));
+        wrapper.appendChild(checkbox);
+
         const label = document.createElement("label");
-        label.htmlFor = radio.id;
+        label.htmlFor = checkbox.id;
         label.innerText = easingFunction.text;
         wrapper.appendChild(label);
 
         optionsElement.appendChild(wrapper);
     }
 
-    const sliderElement = document.getElementById("slider");
-    sliderElement.addEventListener("input", (e) => {
-        updateCanvas();
-    })
-    updateCanvas();
+    document.getElementById("slider").addEventListener("input", updateCanvas);
+    document.getElementById("playbutton").addEventListener("click", playAnimation);
 
-    const playButton = document.getElementById("playbutton");
-    playButton.addEventListener("click", () => {
-        playAnimation();
-    });
+    updateCanvas();
 }
 
-function selectEasingFunction(e, easingFunction) {
-    currentEasingFunction = easingFunction;
+function toggleEasingFunction(event, easingFunction) {
+    if (event.target.checked) {
+        selectedEasingFunctions.push(easingFunction);
+    } else {
+        selectedEasingFunctions = selectedEasingFunctions.filter(fn => fn.text !== easingFunction.text);
+    }
     updateCanvas();
 }
 
 function drawCanvasLines(ctx) {
     ctx.reset();
     ctx.beginPath();
-
-    if (currentEasingFunction) {
-        ctx.moveTo(100, 1100);
-        ctx.lineWidth = 15;
-
-        for (let i = 0; i < 1000; i++) {
-            const nextStep = i / 1000;
-            const nextYPos = 1100 - (eval(`let t = ${nextStep}; ${currentEasingFunction.equation}`) * 1000);
-            ctx.lineTo(i + 100, nextYPos)
-        }
-        ctx.stroke();
-    }
 
     ctx.lineWidth = 5;
     ctx.moveTo(100, 100);
@@ -76,6 +60,20 @@ function drawCanvasLines(ctx) {
     ctx.font = "bold 50px sans-serif";
     ctx.fillText("100%", 25, 75);
     ctx.fillText("3s", 1100, 1150);
+    
+    selectedEasingFunctions.forEach((fn, index) => {
+        ctx.beginPath();
+        ctx.moveTo(100, 1100);
+        ctx.strokeStyle = "#000";
+        ctx.lineWidth = 10;
+
+        for (let i = 0; i < 1000; i++) {
+            const t = i / 1000;
+            const y = eval(`let t = ${t}; ${fn.equation}`) * 1000;
+            ctx.lineTo(i + 100, 1100 - y);
+        }
+        ctx.stroke();
+    });
 }
 
 function updateCanvas() {
@@ -84,24 +82,26 @@ function updateCanvas() {
 
     drawCanvasLines(ctx);
 
-    if (currentEasingFunction) {
-        let sliderValue = document.getElementById("slider").value;
+    const sliderValue = document.getElementById("slider").value;
 
+    selectedEasingFunctions.forEach((fn, index) => {
+        const t = sliderValue / 100;
+        const YPercentage = eval(`let t = ${t}; ${fn.equation}`) * 100;
         const circleX = 100 + (sliderValue * 10);
-        const YPercentage = (eval(`let t = ${sliderValue / 100}; ${currentEasingFunction.equation}`) * 100);
         const circleY = 1100 - (YPercentage * 10);
 
         ctx.beginPath();
-        ctx.arc(circleX, circleY, 50, 0, 2 * Math.PI);
-        ctx.lineWidth = 15;
-        ctx.fillStyle = "#fff"
+        ctx.arc(circleX, circleY, 30, 0, 2 * Math.PI);
+        ctx.lineWidth = 10;
+        ctx.fillStyle = "#fff";
+        ctx.strokeStyle = "#000";
         ctx.stroke();
         ctx.fill();
         ctx.fillStyle = "#000"
         ctx.font = "bold 50px sans-serif";
         ctx.textAlign = "center"
         ctx.fillText(Math.round(YPercentage), circleX, circleY + 15);
-    }
+    })
 }
 
 function playAnimation() {
