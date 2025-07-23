@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Slideshow</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="controls">
+    <button id="sampleBtn">Load Sample Photos</button>
+    <label id="dropArea">
+      Drag & Drop Photos Here
+      <input type="file" id="fileInput" multiple>
+    </label>
+  </div>
+
+  <aside id="configPanel">
+    <h2>Settings</h2>
+    <div>
+      <label for="modeSelect">Mode:</label>
+      <select id="modeSelect">
+        <option value="manual">Manual</option>
+        <option value="auto">Auto-play</option>
+        <option value="random">Random</option>
+      </select>
+    </div>
+    <div>
+      <label for="themeSelect">Theme:</label>
+      <select id="themeSelect">
+        <option value="A">Theme A</option>
+        <option value="B">Theme B</option>
+        <option value="C">Theme C</option>
+        <option value="D">Theme D</option>
+        <option value="E">Theme E</option>
+        <option value="F">Theme F</option>
+      </select>
+    </div>
+    <h3>Order Photos</h3>
+    <ul id="photoList"></ul>
+  </aside>
+
+  <main id="slideshow"></main>
+
+  <div id="commandBar" class="hidden">
+    <input type="text" id="commandInput" placeholder="Enter command...">
+    <ul id="commandOptions">
+      <li data-command="mode-manual">Change to manual control mode</li>
+      <li data-command="mode-auto">Change to auto-playing mode</li>
+      <li data-command="mode-random">Change to random playing mode</li>
+      <li data-command="theme-A">Switch to theme A</li>
+      <li data-command="theme-B">Switch to theme B</li>
+      <li data-command="theme-C">Switch to theme C</li>
+      <li data-command="theme-D">Switch to theme D</li>
+      <li data-command="theme-E">Switch to theme E</li>
+      <li data-command="theme-F">Switch to theme F</li>
+    </ul>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

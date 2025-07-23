@@ -1,0 +1,380 @@
+$transition-speed: .3s;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+#dropArea {
+    border: 2px dashed #666;
+    padding: 2rem;
+    text-align: center;
+    margin: 1rem;
+
+    &.hover {
+        background-color: #eef;
+    }
+}
+
+#fileInput {
+    display: none;
+}
+
+#sampleBtn {
+    margin: 1rem;
+}
+
+#controls {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+#configPanel {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+#photoList {
+    list-style: none;
+    padding: 0;
+}
+
+#photoList li {
+    margin: .5rem 0;
+    cursor: grab;
+}
+
+#slideshow {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    transition: opacity 0.5s;
+
+    &.active {
+        display: block;
+        z-index: 2;
+    }
+
+    &.last-one {
+        display: block;
+        z-index: 1;
+    }
+
+    .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        border-top-right-radius: .5rem;
+        padding: 1rem;
+        color: #000;
+
+        .word {
+            display: inline-block;
+            margin-right: .25em;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 5px;
+    }
+}
+
+
+.dimmed>*:not(#commandBar) {
+    opacity: 0.2;
+}
+
+#commandBar {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+
+    &.hidden {
+        display: none;
+    }
+}
+
+
+#commandBar input {
+    width: 300px;
+    padding: 5px;
+}
+
+#commandBar ul {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#commandBar li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#commandBar li.highlight,
+#commandBar li:hover {
+    background: #444;
+}
+
+#commandBar.visible {
+    display: block;
+}
+
+// Theme B
+@keyframes theme-b-start {
+    0% {
+        transform: translateX(-100vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes theme-b-end {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+.theme-B .active img {
+    animation: theme-b-start $transition-speed forwards;
+}
+
+.theme-B .active .caption {
+    transform: translateX(-100%);
+
+    animation: theme-b-start $transition-speed .3s forwards;
+}
+
+.theme-B .last-one img {
+    animation: theme-b-end $transition-speed forwards;
+}
+
+.theme-B .last-one .caption {
+    animation: theme-b-end $transition-speed forwards;
+}
+
+// Theme C
+@keyframes theme-c-start {
+    0% {
+        transform: translateY(100vh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes theme-c-end {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+
+.theme-C .active img {
+    animation: theme-c-start $transition-speed forwards;
+}
+
+.theme-C .active .caption {
+    animation: theme-c-start $transition-speed forwards;
+
+    .word {
+        transform: translateY(100vh);
+        animation: theme-c-start $transition-speed calc(var(--word-index) * .3s) forwards;
+    }
+}
+
+.theme-C .last-one img {
+    animation: theme-c-end $transition-speed forwards;
+}
+
+.theme-C .last-one .caption {
+    animation: theme-c-end $transition-speed forwards;
+}
+
+// Theme D
+@keyframes theme-d-start {
+    0% {
+        transform: translateX(-120%) rotate(var(--rotate-angle));
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) rotate(var(--rotate-angle));
+        opacity: 1;
+    }
+}
+
+.theme-D .slide {
+    scale: .85;
+    border: 3px solid #fff;
+    z-index: var(--show-index) !important;
+    display: block;
+    transform: translateX(0) rotate(var(--rotate-angle));
+
+    .caption {
+        width: 100%;
+        border-top-right-radius: 0;
+        text-align: center;
+    }
+
+    &:not(.shown) {
+        display: none;
+        transform: translateX(-120%) rotate(var(--rotate-angle));
+    }
+
+    &.active {
+        animation: theme-d-start $transition-speed forwards;
+    }
+}
+
+// Theme E
+@keyframes theme-e-left {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(-90deg);
+    }
+}
+
+@keyframes theme-e-right {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(90deg);
+    }
+}
+
+.theme-E .slide {
+    perspective: 1000px;
+    
+    .caption {
+        display: none;
+    }
+
+    .left {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        top: 0;
+        left: 0%;
+        overflow: hidden;
+        transform-origin: 0%;
+        transform-style: preserve-3d;
+
+        img {
+            position: absolute;
+            width: 200%;
+            left: 0;
+        }
+    }
+
+    .right {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        top: 0;
+        right: 0%;
+        overflow: hidden;
+        transform-origin: 100%;
+        transform-style: preserve-3d;
+
+        img {
+            position: absolute;
+            width: 200%;
+            right: 0;
+        }
+    }
+
+    &.active {
+        z-index: 1;
+    }
+
+    &.last-one {
+        z-index: 2;
+        .left {
+            animation: theme-e-left calc($transition-speed * 5) forwards;
+        }
+        .right {
+            animation: theme-e-right calc($transition-speed * 5) forwards;
+        }
+    }
+}
+
+
+// Theme F
+@keyframes theme-f-start {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes theme-f-end {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.theme-F .active img {
+    animation: theme-f-start $transition-speed forwards;
+}
+
+.theme-F .active .caption {
+    opacity: 0;
+    animation: theme-f-start $transition-speed .3s forwards;
+}
+
+.theme-F .last-one img {
+    animation: theme-f-end $transition-speed forwards;
+}
+
+.theme-F .last-one .caption {
+    animation: theme-f-end $transition-speed forwards;
+}
