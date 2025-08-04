@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  * {
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+}
+html {
+  color-scheme: light dark;
+}
+html:has(body.dark) {
+  color-scheme: dark;
+}
+html:has(body.light) {
+  color-scheme: light;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: Canvas;
+  color: CanvasText;
+  font-size: calc(var(--text-size, 1) * 1rem);
+}
+body.high-contrast {
+  background-color: light-dark(#fff, #000);
+  color: light-dark(#000, #fff);
+}
+body.high-contrast button {
+  background-color: light-dark(#fff, #000);
+  color: light-dark(#000, #fff);
+  border-color: light-dark(#000, #fff);
+}
+
+button {
+  border-style: solid;
+  font-size: 0.7em;
+}/*# sourceMappingURL=style.css.map */
