@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSmart</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <script src="assets/js/contact.js"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo"><span class="blue">Aqua</span><span class="dark-orange">Smart</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <span class="nav-divider">|</span>
+            <a href="contact.html">Contact</a>
+            <span class="nav-divider">|</span>
+            <a href="services.html">Services</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Project enquiry</h1>
+        <form class="contact-form">
+            <fieldset class="step-1">
+                <legend>Step 1: Personal information</legend>
+                <label>
+                    Full Name
+                    <input type="text" autocomplete="name" required />
+                </label>
+                <label>
+                    Email
+                    <input type="email" autocomplete="email" required />
+                </label>
+                <label>
+                    Phone number
+                    <input type="text" autocomplete="tel" />
+                </label>
+                <div class="buttons">
+                    <button type="button" class="next-button">Next</button>
+                </div>
+            </fieldset>
+            <fieldset class="step-2">
+                <legend>Step 2: Project Details</legend>
+                <label>
+                    Company Name
+                    <input type="text" autocomplete="organization" required />
+                </label>
+                <label>
+                    Interested in service
+                    <select required>
+                        <option>Water Supply & Treatment</option>
+                        <option>Wastewater & Recycling Solutions</option>
+                        <option>Flood & Climate Resilience</option>
+                    </select>
+                </label>
+                <label>
+                    Estimated Budget
+                    <input type="number" min="0" step="0.01" required/>
+                </label>
+                <div class="buttons">
+                    <button type="button" class="back-button">Back</button>
+                    <button type="button" class="next-button">Next</button>
+                </div>
+            </fieldset>
+            <fieldset class="step-3">
+                <legend>Step 3: Tell us more about your request</legend>
+                <label>
+                    Tell us more about your request
+                    <textarea required></textarea>
+                </label>
+                <div class="buttons">
+                    <button type="button" class="back-button">Back</button>
+                    <button type="button" class="submit-button">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="form-result">
+            <h2>Thank you for contacting us!</h2>
+        </div>
+    </main>
+</body>
+</html>

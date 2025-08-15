@@ -1,0 +1,67 @@
+h1 {
+  text-align: center;
+}
+
+.step-1, .step-2, .step-3 {
+  border: 0;
+  padding: 1.5rem;
+  border-radius: 5px;
+  background-color: rgba(14, 14, 14, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.step-1 legend, .step-2 legend, .step-3 legend {
+  float: left;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.step-1 label, .step-2 label, .step-3 label {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.step-1 label input, .step-1 label textarea, .step-1 label select, .step-2 label input, .step-2 label textarea, .step-2 label select, .step-3 label input, .step-3 label textarea, .step-3 label select {
+  font-size: inherit;
+  width: 60%;
+}
+.step-1 .buttons, .step-2 .buttons, .step-3 .buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.step-1 .buttons:has(:nth-child(2)), .step-2 .buttons:has(:nth-child(2)), .step-3 .buttons:has(:nth-child(2)) {
+  justify-content: space-between;
+}
+.step-1 .buttons button, .step-2 .buttons button, .step-3 .buttons button {
+  transition: filter 0.2s;
+  justify-self: end;
+  border: none;
+  background-color: rgba(14, 14, 14, 0.885);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  color: Canvas;
+  cursor: pointer;
+}
+.step-1 .buttons button:hover, .step-2 .buttons button:hover, .step-3 .buttons button:hover {
+  filter: brightness(0.7);
+}
+
+.form-result {
+  display: none;
+  padding: 1.5rem;
+  border-radius: 5px;
+  background-color: rgba(14, 14, 14, 0.1);
+  flex-direction: column;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}/*# sourceMappingURL=contact.css.map */

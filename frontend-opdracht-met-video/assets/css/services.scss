@@ -1,0 +1,56 @@
+@import 'lib/_settings.scss';
+
+article {
+    display: none;
+    flex-direction: column;
+
+    .thumbnail {
+        width: calc(100% + 3rem);
+        height: 200px;
+        object-fit: cover;
+        margin-left: -1.5rem;
+        margin-top: -1.5rem;
+        margin-right: -1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    video {
+        max-width: 100%;
+        margin-top: 3rem;
+    }
+}
+
+main {
+    padding-top: 7.5rem;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+}
+
+aside {
+    background-color: rgba(14, 14, 14, 0.1);
+    padding: 1.5rem;
+    margin-right: 1.5rem;
+    border-radius: 5px;
+    height: fit-content;
+
+    button {
+        width: 100%;
+        text-align: center;
+        border: 0;
+        border-radius: 5px;
+        padding: 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.contents {
+    background-color: rgba(14, 14, 14, 0.1);
+    padding: 1.5rem;
+    border-radius: 5px;
+    overflow: hidden;
+}
