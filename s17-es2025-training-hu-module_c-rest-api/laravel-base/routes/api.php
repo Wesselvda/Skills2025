@@ -14,8 +14,6 @@ Route::prefix('v1')->group(function () {
     Route::prefix('users')->group(function () {
         Route::post('register', [AuthController::class, 'register']);
         Route::post('login', [AuthController::class, 'login']);
-        Route::post('logout', [AuthController::class, 'logout']);
-        Route::get('me', [AuthController::class, 'me']);
     });
 
     Route::get('courses', [CourseController::class, 'index']);
@@ -24,6 +22,9 @@ Route::prefix('v1')->group(function () {
     Route::get('mentors/sessions', [MentorController::class, 'sessions']);
 
     Route::middleware('auth:sanctum')->group(function () {
+        Route::post('users/logout', [AuthController::class, 'logout']);
+        Route::get('users/me', [AuthController::class, 'me']);
+
         Route::post('courses/{id}/enroll', [CourseController::class, 'enrollCourse']);
         Route::get('mentors/sessions/{id}/book', [MentorController::class, 'book']);
     });
