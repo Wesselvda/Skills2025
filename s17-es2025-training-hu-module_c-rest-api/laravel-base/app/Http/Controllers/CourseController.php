@@ -18,7 +18,7 @@ class CourseController extends Controller
         $mappedCourses = [];
 
         foreach ($courses as $course) {
-            if ($user) $enrolledCourse = Enrollment::with('completed_chapters')->where('course_id', $course->id)->where('user_id', $user->id);
+            if ($user) $enrolledCourse = Enrollment::with('completed_chapters')->where('course_id', $course->id)->where('user_id', $user->id)->first();
             $totalCredits = 0;
 
             foreach ($course->chapters as $chapter) {
@@ -41,13 +41,13 @@ class CourseController extends Controller
         ];
     }
 
-    function course($id)
+    function course(Request $request, $id)
     {
         $course = Course::with('chapters')->find($id);
         $user = Auth::user();
 
         if ($course) {
-            if ($user) $enrolledCourse = Enrollment::with('completed_chapters')->where('course_id', $course->id)->where('user_id', $user->id);
+            if ($user) $enrolledCourse = Enrollment::with('completed_chapters')->where('course_id', $course->id)->where('user_id', $user->id)->first();
 
             $totalCredits = 0;
             $mappedChapters = [];
@@ -121,7 +121,7 @@ class CourseController extends Controller
         }
     }
 
-    function completeChapter(Request $request, $id)
+    function completeChapter(Request $request, $course_id, $id)
     {
         $chapter = Chapter::find($id);
         $user = $request->user();

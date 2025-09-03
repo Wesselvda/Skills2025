@@ -16,16 +16,16 @@ Route::prefix('v1')->group(function () {
         Route::post('login', [AuthController::class, 'login']);
     });
 
-    Route::get('courses', [CourseController::class, 'index']);
-    Route::get('courses/{id}', [CourseController::class, 'course']);
-
-    Route::get('mentors/sessions', [MentorController::class, 'sessions']);
-
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('users/logout', [AuthController::class, 'logout']);
         Route::get('users/me', [AuthController::class, 'me']);
 
+        Route::get('courses', [CourseController::class, 'index']);
+        Route::get('courses/{id}', [CourseController::class, 'course']);
         Route::post('courses/{id}/enroll', [CourseController::class, 'enrollCourse']);
-        Route::get('mentors/sessions/{id}/book', [MentorController::class, 'book']);
+        Route::post('courses/{course_id}/chapters/{id}/complete', [CourseController::class, 'completeChapter']);
+
+        Route::get('mentors/sessions', [MentorController::class, 'sessions']);
+        Route::post('mentors/sessions/{id}/book', [MentorController::class, 'book']);
     });
 });
