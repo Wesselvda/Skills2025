@@ -1,0 +1,482 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: white;
+  background-color: hsl(264, 50%, 5%);
+  background-image: linear-gradient(160deg, #2d3b7a, #1f2446);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#root:has(.auth-container) {
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background-image: linear-gradient(160deg, hsla(264, 10%, 4%, 0.2), hsla(264, 10%, 2%, 0.2));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  padding: 1.5rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+  border-radius: 0.5rem;
+}
+
+.input-wrapper {
+  margin-bottom: 1.5rem;
+}
+.input-wrapper label {
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+.input-wrapper input {
+  padding: 0.5rem;
+  width: 100%;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+  border-radius: 0.5rem;
+}
+
+.auth-container {
+  margin: 1.5rem;
+}
+.auth-container h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.auth-container button[type=submit] {
+  transition: filter 0.2s, scale 0.2s;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  width: 100%;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+.auth-container button[type=submit]:hover {
+  filter: brightness(0.5);
+}
+.auth-container button[type=submit]:active {
+  scale: 0.95;
+}
+.auth-container a {
+  transition: filter 0.2s;
+  color: #fff;
+}
+.auth-container a:hover {
+  filter: brightness(0.8);
+}
+
+header.main-header {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  padding: 1.5rem 15%;
+  font-size: 1rem;
+}
+@media screen and (max-width: 599px) {
+  header.main-header {
+    padding: 1.5rem;
+  }
+}
+header.main-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header.main-header a {
+  color: #fff;
+  text-decoration: none;
+  transition: filter, border 0.2s;
+}
+header.main-header a:hover {
+  filter: brightness(0.8);
+}
+header.main-header .logo {
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+header.main-header .center-links,
+header.main-header .right-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+header.main-header .center-links a,
+header.main-header .right-links a {
+  border: 0.25rem solid transparent;
+  padding: 0.5rem;
+}
+header.main-header .center-links a.selected,
+header.main-header .right-links a.selected {
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+}
+header.main-header .right-links .logout-button {
+  font: inherit;
+  background: none;
+  padding: 0.5rem;
+  transition: filter 0.2s;
+  color: #fff;
+  cursor: pointer;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+}
+header.main-header .right-links .logout-button:hover {
+  filter: brightness(0.8);
+}
+header.main-header .right-links .credit-count {
+  padding: 0.5rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+}
+header.main-header .right-links .user {
+  padding: 0.5rem;
+}
+
+#root > main {
+  padding: 1.5rem 15%;
+}
+@media screen and (max-width: 599px) {
+  #root > main {
+    padding: 1.5rem;
+  }
+}
+
+.loading-screen {
+  background-color: hsl(264, 50%, 2%);
+  position: fixed;
+  transition: transform 0.4s;
+  z-index: 999;
+  inset: 0;
+  transform: translateY(120%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading-screen.loading {
+  transform: translateY(0%);
+}
+
+.dashboard-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.dashboard-section .dashboard-section {
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+hr {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+  border-width: 0.125rem;
+}
+
+.top-dashboard-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+.top-dashboard-wrapper .dashboard-section {
+  text-align: center;
+}
+.top-dashboard-wrapper .dashboard-section .count {
+  font-size: 3rem;
+}
+.top-dashboard-wrapper .dashboard-section .description {
+  text-transform: uppercase;
+}
+
+.bottom-dashboard-wrapper {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.bottom-dashboard-wrapper a {
+  transition: filter 0.2s;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+}
+.bottom-dashboard-wrapper a:hover {
+  filter: brightness(0.8);
+}
+
+.search-box {
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  font-size: inherit;
+  padding: 1rem 0.5rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+
+.courses {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.courses .dashboard-section .title {
+  font-size: 1.25rem;
+}
+.courses .dashboard-section .description {
+  filter: brightness(0.8);
+}
+.courses .dashboard-section hr {
+  margin-bottom: 0.5rem;
+}
+.courses .dashboard-section .stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  text-align: center;
+}
+.courses .dashboard-section .stats .title {
+  font-size: 0.75rem;
+  filter: brightness(0.8);
+}
+.courses .dashboard-section .stats .dashboard-section {
+  padding: 0.25rem;
+}
+.courses .dashboard-section .stats .dashboard-section .value {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  margin-top: 0.5rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.courses .dashboard-section .stats .dashboard-section .count {
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  margin-top: 0.5rem;
+}
+.courses .dashboard-section .button {
+  margin-top: 0.5rem;
+  width: 100%;
+  transition: filter 0.2s;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.courses .dashboard-section .button.enrolled {
+  background-color: rgba(80, 139, 91, 0.5);
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.courses .dashboard-section .button:hover {
+  filter: brightness(0.8);
+}
+
+.back-button {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  transition: filter 0.2s;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.back-button:hover {
+  filter: brightness(0.8);
+}
+
+.course-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  text-align: center;
+}
+.course-stats .dashboard-section {
+  padding: 1.5rem;
+}
+.course-stats .dashboard-section .progress-bar {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2em;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.3);
+}
+.course-stats .dashboard-section .progress-bar .progress {
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 100%;
+}
+.course-stats .dashboard-section .description {
+  text-transform: uppercase;
+  filter: brightness(0.8);
+}
+
+.dashboard-section.chapter {
+  margin-top: 1.5rem;
+}
+.dashboard-section.chapter .credit-count {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.dashboard-section.chapter .view-chapter {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  cursor: pointer;
+  transition: filter 0.2s;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.dashboard-section.chapter .view-chapter:hover {
+  filter: brightness(0.8);
+}
+.dashboard-section.chapter .chapter-completed {
+  background-color: rgba(80, 139, 91, 0.5);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  margin-left: 1rem;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.dashboard-section.chapter .mark-as-completed {
+  background-color: rgba(80, 139, 91, 0.5);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: filter 0.2s;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.dashboard-section.chapter .mark-as-completed:hover {
+  filter: brightness(0.8);
+}
+.dashboard-section.chapter .share-achievement {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  cursor: pointer;
+  transition: filter 0.2s;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.dashboard-section.chapter .share-achievement:hover {
+  filter: brightness(0.8);
+}
+
+.available-sessions {
+  margin-top: 1rem;
+}
+.available-sessions .session-list .dashboard-section {
+  margin-top: 1rem;
+}
+.available-sessions .session-list .dashboard-section .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.available-sessions .session-list .dashboard-section .view-profile {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  cursor: pointer;
+  transition: filter 0.2s;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.available-sessions .session-list .dashboard-section .view-profile:hover {
+  filter: brightness(0.8);
+}
+.available-sessions .session-list .dashboard-section .book-session {
+  background-color: rgba(80, 139, 91, 0.5);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: filter 0.2s;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}
+.available-sessions .session-list .dashboard-section .book-session:hover {
+  filter: brightness(0.8);
+}
+.available-sessions .session-list .dashboard-section .session-booked {
+  margin-left: 1rem;
+  display: inline;
+  background-color: rgba(139, 122, 80, 0.5);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: inherit;
+  border: 0.25rem solid hsla(264, 10%, 2%, 0.4);
+}/*# sourceMappingURL=general.css.map */

@@ -1,0 +1,19 @@
+$background-color: hsl(264, 50%, 2%);
+
+$text-color: #fff;
+
+@mixin border {
+    border: .25rem solid hsla(264, 10%, 2%, 0.4);
+}
+
+@mixin inner-border {
+    border: .25rem solid hsla(264, 10%, 2%, 0.3);
+}
+
+@mixin container-padding {
+    padding: 1.5rem 15%;
+
+    @media screen and (max-width: 599px) {
+        padding: 1.5rem;
+    }
+}
